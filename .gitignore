@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+# Downloaded Dziennik Ustaw texts live in the user cache, never in the repo.
+.cache/
+*.pdf
