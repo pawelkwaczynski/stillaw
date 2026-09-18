@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner-1280x640.png" alt="Stillaw" width="640">
+</p>
+
 # Stillaw
 
 Is this still the law?
@@ -157,6 +161,24 @@ What it does not do:
 - Readers for legislation.gov.uk (`stillaw.uk`) and boe.es (`stillaw.es`) exist as
   library functions for comparison. Both jurisdictions publish the in-force data the
   Polish parser has to reconstruct from prose. They are not wired into the CLI yet.
+
+## Design
+
+Icon and banner live in `assets/`. The mark is a document with an hourglass inside it: the
+question is about a text and about time, not about a court, so there is no gavel and no scales.
+
+| role | colour | where |
+|---|---|---|
+| background | `#F6F5F1` | pages, cards, large areas |
+| ink | `#102A43` | body text, headings, the mark |
+| warning | `#C58A1C` | superseded status, badges, borders |
+
+The warning colour is deliberately amber rather than red: terminal red already means failure,
+and a superseded statute is not a failure, it is a fact that needs checking. For a status badge,
+`#FFF6DA` background with `#9A6812` text and border.
+
+Type: **IBM Plex Sans** for headings and prose, **JetBrains Mono** for code and CLI output.
+Both under the SIL Open Font License.
 
 ## License
 
