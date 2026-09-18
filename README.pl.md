@@ -19,6 +19,11 @@
 
 ---
 
+```bash
+pip install stillaw
+stillaw check "Dz.U. 2025 poz. 277" --as-of 2026-09-18
+```
+
 Podajesz ustawę (adres z Dziennika Ustaw, identyfikator ELI albo tytuł) i datę, a Stillaw mówi,
 czy tekst jednolity nadal obowiązywał tego dnia, która nowelizacja go wyprzedziła, od kiedy,
 i **cytuje przepis, z którego odczytał datę**. Żadnego modelu językowego: wszystko pochodzi

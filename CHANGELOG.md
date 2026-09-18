@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 (2026-09-18)
+
+Packaging and discovery only; no change to what the tool computes.
+
+- Install command on the first screen of both readmes.
+- Polish readme (`README.pl.md`), because the statutes are Polish and so are most of the people
+  who need to know whether one is still in force.
+- Project links and agent-facing keywords in the package metadata, so the MCP server is findable.
+
 ## 0.1.0 (2026-08-28)
 
 First release. The as-of engine extracted from the omniai legal benchmark into a package

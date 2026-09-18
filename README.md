@@ -21,6 +21,11 @@
 
 ---
 
+```bash
+pip install stillaw
+stillaw check "Dz.U. 2025 poz. 277" --as-of 2026-09-18
+```
+
 Give it a Polish statute (a Dziennik Ustaw citation, an ELI id, or a title) and a date, and
 it tells you whether the consolidated text is still the law in force on that date, which
 amendment changed it, from when, and **quotes the clause it read the date from**. No language
