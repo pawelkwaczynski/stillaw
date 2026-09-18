@@ -2,18 +2,43 @@
   <img src="assets/banner-1280x640.png" alt="Stillaw" width="640">
 </p>
 
-# Stillaw
+<p align="center">
+  <a href="https://pypi.org/project/stillaw/"><img alt="PyPI" src="https://img.shields.io/pypi/v/stillaw?color=102A43&labelColor=F6F5F1"></a>
+  <a href="https://pypi.org/project/stillaw/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/stillaw?color=102A43&labelColor=F6F5F1"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-102A43?labelColor=F6F5F1"></a>
+  <img alt="Tests" src="https://img.shields.io/badge/tests-64%20offline-102A43?labelColor=F6F5F1">
+  <img alt="No LLM" src="https://img.shields.io/badge/language%20model-none-C58A1C?labelColor=F6F5F1">
+</p>
 
-Is this still the law?
+<p align="center">
+  <b>Is this still the law?</b><br>
+  <a href="#install">Install</a> ·
+  <a href="#command-line">Command line</a> ·
+  <a href="#what-it-knows-and-what-it-doesnt">What it knows</a> ·
+  <a href="#mcp">MCP</a> ·
+  <a href="README.pl.md">🇵🇱 po polsku</a>
+</p>
+
+---
 
 Give it a Polish statute (a Dziennik Ustaw citation, an ELI id, or a title) and a date, and
 it tells you whether the consolidated text is still the law in force on that date, which
-amendment changed it, from when, and quotes the clause it read the date from. No language
+amendment changed it, from when, and **quotes the clause it read the date from**. No language
 model anywhere in the loop: everything is resolved from the ELI API of the Dziennik Ustaw
 (api.sejm.gov.pl), deterministically, with a sha256 of the answer.
 
-57 of 89 Polish consolidated statute texts checked on 24.08.2026 were no longer the law in
-force. A text can be wrong and still be the newest one there is.
+> **Of 89 Polish consolidated statute texts checked on 2026-08-24, 57 were no longer the law
+> in force.** A text can be wrong and still be the newest one published.
+
+## Who this is for
+
+- **Lawyers and in-house counsel** who need to know whether a text pulled from a database
+  last quarter still governs, before it goes into a filing.
+- **Anyone building a legal assistant.** A retrieval layer that returns the newest
+  consolidated text is not the same as one that returns the law. This tells you which you have.
+- **Compliance and policy teams** tracking what changes and from when, including amendments
+  published but not yet in force.
+- **Researchers** who need a date they can defend, with the clause it came from.
 
 ## Install
 
@@ -42,21 +67,7 @@ amendments after the text: 7
   DU/2025/1006   promulgated 2025-07-25  in force 2025-08-09  after 14 days
       Ustawa z dnia 25 czerwca 2025 r. o zmianie ustawy o informatyzacji działalności podmiotów realizując
       basis: wchodzi w życie po upływie 14 dni od dnia ogłoszenia, z wyjątkiem: 1) art. 3 pkt 2 lit. a i b oraz pkt 3, art. 4 pkt 2, 4 i 5 oraz art. 9, które wchodzą w życie
-  DU/2025/1676   promulgated 2025-12-02  in force 2026-03-03  after 3 months; partial exception for art. 1: 1) art. 1 pkt 6 i 16 oraz art. 4 pkt 11 i 13,
-      Ustawa z dnia 17 października 2025 r. o zmianie ustawy - Prawo o ruchu drogowym oraz niektórych inny
-      basis: wchodzi w życie po upływie 3 miesięcy od dnia ogłoszenia, z wyjątkiem: 1) art. 1 pkt 6 i 16 oraz art. 4 pkt 11 i 13, które wchodzą w życie z dniem następującym
-  DU/2025/1734   promulgated 2025-12-09  in force 2026-06-10  after 6 months; partial exception for art. 1: 1) art. 1 pkt 5, pkt 11, pkt 13 lit. b i pkt 15–17 oraz art. 3,
-      Ustawa z dnia 7 listopada 2025 r. o zmianie ustawy - Prawo o ruchu drogowym
-      basis: wchodzi w życie po upływie 6 miesięcy od dnia ogłoszenia, z wyjątkiem: 1) art. 1 pkt 5, pkt 11, pkt 13 lit. b i pkt 15–17 oraz art. 3, które wchodzą w życie po
-  DU/2025/1843   promulgated 2025-12-23  in force 2026-06-24  after 6 months; partial exception for art. 1: 1) art. 1 pkt 7–9,
-      Ustawa z dnia 21 listopada 2025 r. o zmianie ustawy - Prawo o ruchu drogowym oraz niektórych innych
-      basis: wchodzi w życie po upływie 6 miesięcy od dnia ogłoszenia, z wyjątkiem: 1) art. 1 pkt 7–9, które wchodzą w życie z dniem 5 lipca 2026 r.; 2) art. 2, art. 4 i art
-  DU/2025/1872   promulgated 2025-12-29  in force 2026-01-29  after 30 days; partial exception for art. 4: art. 4 pkt 1, 3 i 4 oraz art. 6,
-      Ustawa z dnia 4 grudnia 2025 r. o zmianie niektórych ustaw w celu poprawy bezpieczeństwa ruchu drogo
-      basis: wchodzi w życie po upływie 30 dni od dnia ogłoszenia, z wyjątkiem art. 4 pkt 1, 3 i 4 oraz art. 6, które wchodzą w życie po upływie 3 miesięcy od dnia ogłoszeni
-  DU/2026/180    promulgated 2026-02-17  in force 2026-05-18  after 3 months
-      Ustawa z dnia 23 stycznia 2026 r. o zmianie ustawy - Prawo o ruchu drogowym oraz niektórych innych u
-      basis: wchodzi w życie po upływie 3 miesięcy od dnia ogłoszenia, z wyjątkiem: 1) art. 2 pkt 1 i 2, art. 4 pkt 1 lit. b–e i pkt 2–4, które wchodzą w życie z dniem 3 mar
+  [... five more amendments, each with its own clause ...]
 record: https://api.sejm.gov.pl/eli/acts/DU/2024/1251
 sha256: 37ff72320e8014d8932fbe9cd329be1fba39d1756fd41f25f0560ebf065acc49
 ```
@@ -179,6 +190,15 @@ and a superseded statute is not a failure, it is a fact that needs checking. For
 
 Type: **IBM Plex Sans** for headings and prose, **JetBrains Mono** for code and CLI output.
 Both under the SIL Open Font License.
+
+## Contributing
+
+Bug reports about a statute whose status comes out wrong are the most useful thing you can
+send: paste the citation, the date and what you expected. The parser is built from clauses
+seen in the wild, so every clause it does not recognise is a real gap.
+
+If Stillaw saved you one wrong citation, leave a ⭐. Stars are what puts a tool in front of
+the next person who needs it.
 
 ## License
 
